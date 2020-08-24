@@ -1,0 +1,119 @@
+/* --- 1 --- */
+
+var msg = "Hola, Mundo";
+console.log(msg);
+
+/* --- 2 --- */
+
+var Meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+Meses.map(function(k){
+    return console.log(k);
+});
+
+/* --- 3 --- */
+
+function CalcularNumero(numero){
+    
+    var result = numero % 2;
+    if(result == 0){
+        console.log('Es Par');
+    }else{
+        console.log('Impar');
+    }
+}
+
+/* --- 4 --- */
+
+function CalcularArray(array){
+
+var result = (element) => element % 2 === 0;
+
+console.log(array.some(result));
+}
+
+/* --- 5 --- */
+
+function CalcularNota(array){
+
+var result = (element) => element >= 4;
+
+console.log(array.every(result));
+}
+
+/* --- 6 --- */
+
+function CalcularNotaAlumno(array){
+
+    //var result = (element) => element >= 4;
+    var result = array.find(element => element >= 4);
+
+    console.log(result);
+
+}
+
+/* --- 7 --- */
+
+function hayAlgunNegativo(array){
+
+    var result = (element) => element <= 0;
+
+    console.log(array.some(result));
+}
+
+/* --- 8 --- */
+
+function cuantosCumplen(array){
+
+    var result = (element) => element % 2 === 0;
+
+    //console.log(array.find(result));
+}
+
+
+/* --- 9 --- */
+
+/* --- 10 --- */
+
+function Contiene(numero, array){
+
+    var result = array.match(numero);
+    return result;
+}
+
+/* --- 11 --- */
+
+class Persona {
+
+constructor(nombre, apellido){
+    this.nombre = nombre;
+    this.apellido = apellido;
+}
+
+Hola(){
+console.log('Hola mi Nombre completo es: '+this.nombre+' ' +this.apellido);
+}
+
+}
+
+const Persona1 = new Persona('Cristian', 'Amarillo');
+Persona1.Hola();
+
+/* --- 12 --- */
+
+class Estudiante extends Persona {
+
+HolaAlumno(){
+    return super.Hola() + '. Soy un estudiante.';
+    //console.log('Hola, soy un alumno y mi Nombre completo es: '+this.nombre+' ' +this.apellido);
+}
+
+Profesor(){
+    console.log('Mi profesor es: ' + this.profesor);
+}
+}
+
+const Alumno = new Estudiante('Cristian', 'Amarillo');
+
+Alumno.HolaAlumno();
+Alumno.Profesor();
