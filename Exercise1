@@ -30,6 +30,7 @@ function CalcularArray(array){
 var result = (element) => element % 2 === 0;
 
 console.log(array.some(result));
+
 }
 
 /* --- 5 --- */
@@ -65,13 +66,40 @@ function hayAlgunNegativo(array){
 
 function cuantosCumplen(array){
 
+    var numeros = array;
     var result = (element) => element % 2 === 0;
 
-    //console.log(array.find(result));
+    var tabien = 0;
+    for(var i=0; i < numeros[i].length; i++){
+        var validacion = numeros[i].find(result);
+        console.log(validacion);
+        if(validacion == true)
+        tabien++;
+
+    }
+   // console.log(array.find(result));
 }
 
 
 /* --- 9 --- */
+
+function Rechazar(array){
+
+    var numeros = array
+
+    var validos = new Array(2,4,6,78);
+     
+    var iguales = [];
+    for(var i=0;i < numeros.length; i++)
+    {
+        for(var j=0; j < numeros.length; j++)
+        {
+            if(numeros[i] == validos[j])
+                iguales.push(numeros[i]);
+        }
+    }
+    console.log("Estos son iguales: " + iguales);
+}
 
 /* --- 10 --- */
 
