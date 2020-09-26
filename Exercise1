@@ -7,9 +7,8 @@ console.log(msg);
 
 var Meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-Meses.map(function(k){
-    return console.log(k);
-});
+
+Meses.forEach(element => console.log(element));
 
 /* --- 3 --- */
 
@@ -47,10 +46,8 @@ console.log(array.every(result));
 function CalcularNotaAlumno(array){
 
     //var result = (element) => element >= 4;
-    var result = array.find(element => element >= 4);
-
+    var result = array.some(element => element >= 4);
     console.log(result);
-
 }
 
 /* --- 7 --- */
@@ -105,7 +102,7 @@ function Rechazar(array){
 
 function Contiene(numero, array){
 
-    var result = array.match(numero);
+    var result = array.includes(numero);
     return result;
 }
 
@@ -125,6 +122,8 @@ console.log('Hola mi Nombre completo es: '+this.nombre+' ' +this.apellido);
 }
 
 const Persona1 = new Persona('Cristian', 'Amarillo');
+
+
 Persona1.Hola();
 
 /* --- 12 --- */
@@ -136,12 +135,21 @@ HolaAlumno(){
     //console.log('Hola, soy un alumno y mi Nombre completo es: '+this.nombre+' ' +this.apellido);
 }
 
-Profesor(){
-    console.log('Mi profesor es: ' + this.profesor);
+setProfesor(Profesor){
+    this.Profesor = Profesor;
 }
+
+Estudiando(){
+
+    console.log('Estudiando con: ' + this.Profesor);
+}
+
+
 }
 
 const Alumno = new Estudiante('Cristian', 'Amarillo');
 
 Alumno.HolaAlumno();
-Alumno.Profesor();
+Alumno.setProfesor('Cristian Nievas');
+Alumno.Estudiando();
+
