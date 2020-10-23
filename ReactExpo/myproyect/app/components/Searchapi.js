@@ -1,49 +1,88 @@
-import React, { Component, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, Button, Input } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Image, Button } from 'react-native';
 //import Logo from '../../assets/images/logo.gif';
 import axios from 'axios';
 
-export default function SearchApi() {
-  const state = {
-    TextValue: {},
-    Estado: null
+export default class SearchApi extends React.Component {
+
+  state = {
+    response: [],
+    estado: false
   }
-
-  const [e, setCapitulo] = useState('');
-
-  //const [text, setText] = useState('');
-
-  const buscarCapitulo = () => {
+  setCapitulo(e){
     var cap = e;
+    this.setState({value : cap});
+  }
+  buscarCapitulo = () => {
+    var cap = this.state.value;
 
     axios.get('https://onepiececover.com/api/chapters/'+cap)
     .then(res => {
         console.log(res);
-    })
+        if(res.data != false){
+          this.setState({
+            response: res.data,
+            estado: true
+          })
+      }else{
+        console.log("Error");
+      }
+    });
   }
-
+render(){
+  if(this.state.estado != true){
   return (
       
     <View style={styles.container}>
 
-    <Image source={{uri: 'https://i.pinimg.com/originals/ef/1e/1e/ef1e1e7787a813d943d3bf48262c97d8.jpg'}}/>
+    <Image 
+    style={styles.logo}
+    source={ require('../../assets/images/logo.gif') }
+    />
 
       <Text>Que Capitulo Busca?</Text>
       <TextInput
       style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 25, padding: 15}}
-      onChangeText={e => setCapitulo(e)}
-      defaultValue={e}
+      onChangeText={this.setCapitulo.bind(this)}
+
     />
     <Button
-    onPress={buscarCapitulo}
+    onPress={this.buscarCapitulo.bind(this)}
     title="Buscar"
     color="#841584"
-    accessibilityLabel="Learn more about this purple button"
     />
 
     </View>
 
   );
+}else{
+  return (
+      
+    <View style={styles.container}>
+
+    <Image 
+    style={styles.logo}
+    source={ require('../../assets/images/logo.gif') }
+    />
+      <Text>Que Capitulo Busca?</Text>
+      <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 25, padding: 15}}
+      onChangeText={this.setCapitulo.bind(this)}
+
+    />
+    <Button
+    onPress={this.buscarCapitulo.bind(this)}
+    title="Buscar"
+    color="#841584"
+    />
+    <Text style={styles.box}>Titulo: {this.state.response.title}</Text>
+    <Text style={styles.box}>Capitulo: {this.state.response.chapter}</Text>
+    <Text style={styles.box}>Personajes: {this.state.response.characters}</Text>
+    <Text style={styles.box}>Sumario: {this.state.response.summary}</Text>
+    </View>
+  );
+}
+}
 }
 
 const styles = StyleSheet.create({
@@ -52,5 +91,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  box: {
+    flex: 1,
+    textAlign: 'center',
+    padding: '5px'
+    
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginTop: 15
   },
 });
