@@ -13,7 +13,7 @@ export default function App() {
     <SearchApi />
   );
 }
-
+/*Comentario */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
